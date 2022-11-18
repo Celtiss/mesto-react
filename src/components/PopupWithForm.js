@@ -1,0 +1,18 @@
+function PopupWithForm(props) {
+    return (
+        <div className={`popup popup_type_${props.name} ${props.isOpen ? 'popup_is-opened' : ''}`} onClick={props.onClose}>
+            <div className="popup__container">
+                <button type="button" className="popup__close"></button>
+                <div className="popup__content">
+                    <h2 className="popup__title">{props.title}</h2>
+                    <form action="#" name={props.name} className="popup__form popup__form_type_edit-profile" noValidate>
+                        {props.children}
+                        <button type="submit" className="popup__save">{props.btnName}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default PopupWithForm;   
