@@ -60,12 +60,11 @@ class Api {
         })
         .then(this._getResFromServer());
     }
-
-    setCardLikes(id, userData) {
+    
+    setCardLikes(id) {
         return fetch(`${this._url}/cards/${id}/likes`, {
             method: 'PUT',
-            headers: this._headers,
-            body: JSON.stringify(userData)
+            headers: this._headers
         })
         .then(this._getResFromServer());
     }
