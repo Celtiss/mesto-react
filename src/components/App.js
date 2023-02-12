@@ -3,7 +3,6 @@ import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
 import ImagePopup from './ImagePopup.js';
-import PopupWithForm from './PopupWithForm.js';
 import EditProfilePopup from './EditProfilePopup.js'
 import EditAvatarPopup from './EditAvatarPopup.js'
 import AddPlacePopup from './AddPlacePopup.js'
@@ -26,9 +25,9 @@ function App() {
     //Получаем данные пользователя и карточки с сервера
     useEffect(() => {
         Promise.all([api.getUserInfo(), api.getInitialCards()])
-            .then((values) => {
-                setCurrentUser(values[0]);
-                setCardsState(values[1]);
+            .then(([userData, cardsData]) => {
+                setCurrentUser(userData);
+                setCardsState(cardsData);
             })
             .catch((err) => { //попадаем сюда если один из промисов завершаться ошибкой
                 console.log(err);
@@ -162,17 +161,6 @@ function App() {
                     <ImagePopup
                         card={selectedCard}
                         onClose={closeAllPopups} />
-                    <div className="popup popup_type_confirmation">
-                        <div className="popup__container">
-                            <button type="button" className="popup__close"></button>
-                            <div className="popup__content">
-                                <h2 className="popup__title">Вы уверены?</h2>
-                                <form action="#" name="popupCardConfirm" className="popup__form popup__form_type_card-confirm">
-                                    <button type="submit" className="popup__save">Да</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </CurrentUserContext.Provider>
